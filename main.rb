@@ -14,6 +14,7 @@ def traverse(dir_path, space_count = 0)
 
   middle_sign = "├── "
   end_sign = "└── "
+  line_sign = "│"
 
   entries.each_with_index do |entry, index| 
     if entry == "." || entry == ".."
@@ -27,11 +28,15 @@ def traverse(dir_path, space_count = 0)
     end
 
     space_count.times do |space_index|
-      print "\t"
+      if space_index == space_count - 1
+        print line_sign
+      end
+
+      print "      "
     end
 
 
-    puts "#{sign} #{entry} #{space_count}"
+    puts "#{sign} #{entry}"
 
     current_path = File.join(dir_path, entry)
 
